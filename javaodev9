@@ -1,0 +1,64 @@
+package giris;
+
+import java.util.Scanner;
+
+public class atmprojesi {
+    public static void main(String[] args) {
+        String username,password;
+        Scanner input = new Scanner(System.in);
+        int hak=3;
+        int bakiye=1500;
+        int select;
+        while(hak>0) {
+            System.out.println("Kullanıcı adınız : " );
+            username=input.nextLine();
+            System.out.println("Parolanız: ");
+            password=input.nextLine();
+            //aşağıdaki gibi stringlerde eşitlerken equals kullanmalıyız ==operatörler işe yaramaz.
+            if (username.equals("efeaks88") && password.equals("efe123")){
+                System.out.println("Sisteme giriş yapıldı !! ");
+                do{
+                    System.out.println("Lütfen işlem seçiniz. " );
+                    System.out.println("1-Para yatırma\n"+
+                            "2-Para çekme\n"+
+                            "3-Bakiye sorgulama\n"+
+                            "4-çıkış yap");
+                    select =input.nextInt();
+                    if (select ==1)
+                    {
+                        System.out.println("Para yatırma Miktarı: ");
+                        int price =input.nextInt();
+                        bakiye+=price;
+                        System.out.println("Yeni Bakiyeniz : "+ bakiye);
+                    }
+                    else if (select==2)
+                    {
+                        System.out.println("Para çekilme miktarı: ");
+                        int price =input.nextInt();
+                        if (price > bakiye)
+                        {
+                            System.out.println("Bakiye Yetersiz. ");
+                        }
+                        else
+                        {
+                            bakiye-=price;
+                            System.out.println("Yeni Bakiyeniz : "+ bakiye);
+                        }
+                    }else if (select==3)
+                    {
+                        System.out.println("Bakiyeniz : "+ bakiye);
+                    }
+                }while (select!=4);
+                System.out.println("CYA !! ");
+                //4 hariç seçtikçe devam edicez ama 4ü seçersek biticek bu anlama geliyor.
+                break;
+            }
+            else {
+                hak--;
+                System.out.println("Hatalı kullanıcı adı veya şifre tekrar deneyiniz. ");
+                System.out.println("Kalan Hakkınız : "+ hak);
+            }
+        }
+
+    }
+}
